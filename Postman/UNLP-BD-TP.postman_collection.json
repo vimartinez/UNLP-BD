@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "59f1272d-50f1-45b6-8ccc-b341628a4abf",
+		"name": "UNLP-BD-TP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TestBiblio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Autor?nombre=Vic&nacionalidad=Argentino",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Autor"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "Vic"
+						},
+						{
+							"key": "nacionalidad",
+							"value": "Argentino"
+						}
+					]
+				},
+				"description": "Prueba REST"
+			},
+			"response": []
+		},
+		{
+			"name": "getAutores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Autor/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Autor",
+						"all"
+					]
+				},
+				"description": "Biblio"
+			},
+			"response": []
+		},
+		{
+			"name": "addAutor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Autor/add?nombre=Stephen King&nacionalidad=Estados Unidos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Autor",
+						"add"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "Stephen King"
+						},
+						{
+							"key": "nacionalidad",
+							"value": "Estados Unidos"
+						}
+					]
+				},
+				"description": "Biblio"
+			},
+			"response": []
+		},
+		{
+			"name": "delAutor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Autor/del?id=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Autor",
+						"del"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						},
+						{
+							"key": "nacionalidad",
+							"value": "Argentina",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
