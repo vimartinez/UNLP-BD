@@ -12,9 +12,8 @@ public class AutorRepositoryCustomImpl implements AutorRepositoryCustom {
 
 	@Override
 	public Autor getAutorById(Integer id) {
-		Query query = entityManager.createNativeQuery("SELECT * FROM Autor " +
-                "WHERE id = ?", Autor.class);
-        query.setParameter(1, id + "");
+		Query query = entityManager.createNativeQuery("SELECT * FROM Autor WHERE id = ?", Autor.class);
+        query.setParameter(1, id );
         return (Autor) query.getResultList();
 
 	}

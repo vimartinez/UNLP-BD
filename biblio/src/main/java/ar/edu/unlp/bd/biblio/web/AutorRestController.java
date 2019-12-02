@@ -1,44 +1,40 @@
 package ar.edu.unlp.bd.biblio.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.unlp.bd.biblio.model.Autor;
-import ar.edu.unlp.bd.biblio.repositories.AutorRepository;
-import ar.edu.unlp.bd.biblio.repositories.AutorRepositoryCustom;
+import ar.edu.unlp.bd.biblio.service.AutorService;
 
-@Controller
-@RequestMapping(path="/Autor")
+@RestController
 public class AutorRestController {
-@Autowired
-  private AutorRepository autorRepository;
-private AutorRepositoryCustom autorRepositoryCustom;
+	@Autowired
+	private AutorService autorService;
 
-  @PostMapping(path="/add")
-  public @ResponseBody String addAutor (@RequestParam(value = "nombre", defaultValue = "sinNombre") String nombre,
-	@RequestParam(value = "nacionalidad", defaultValue = "sinNacionalidad") String nacionalidad){
+	@GetMapping(value = "/autor/{id}")
+	public @ResponseBody Autor getAutor(@PathVariable("id") Integer id) {
+		return autorService.getAutor(id);
+	}
 
-	Autor a = new Autor(nombre, nacionalidad);
-    autorRepository.save(a);
-    return "Autor guardado";
-  }
-  
-  @PostMapping(path="/del")
-  public @ResponseBody String delAutor (@RequestParam(value = "id") Integer id){
-	  
-	Autor a = autorRepositoryCustom.getAutorById(id);
-	a.setEliminado(true);
-    autorRepository.save(a);
-    return "Autor eliminado";
-  }
+	@GetMapping(value = "/autor")
+	public @ResponseBody Iterable<Autor> getAllAutores() {
+		return autorService.getAllAutores();
+	}
 
-  @GetMapping(path="/all")
-  public @ResponseBody Iterable<Autor> getAllAutores() {
-    return autorRepository.findAll();
-  }
+	@PostMapping(path = "/autor", produces = "application/json")
+	public @ResponseBody Autor addAutor(@RequestBody Autor autor) {
+		return autorService.addAutor(autor);
+	}
+
+	@DeleteMapping(path = "/autor/{id}", produces = "application/json")
+	public @ResponseBody String delAutor(@PathVariable("id") Integer id) {
+		return autorService.delAutor(id);
+	}
 }

@@ -41,15 +41,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/Autor/all",
+					"raw": "http://localhost:8080/autor/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"Autor",
-						"all"
+						"autor",
+						""
 					]
 				},
 				"description": "Biblio"
@@ -57,30 +57,55 @@
 			"response": []
 		},
 		{
-			"name": "addAutor",
+			"name": "getAutor",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/Autor/add?nombre=Stephen King&nacionalidad=Estados Unidos",
+					"raw": "http://localhost:8080/autor/4",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"Autor",
-						"add"
+						"autor",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addAutor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombreApe\": \"ppp\",\r\n    \"nacionalidad\": \"Reinoeee\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/autor/",
+					"protocol": "http",
+					"host": [
+						"localhost"
 					],
-					"query": [
-						{
-							"key": "nombre",
-							"value": "Stephen King"
-						},
-						{
-							"key": "nacionalidad",
-							"value": "Estados Unidos"
-						}
+					"port": "8080",
+					"path": [
+						"autor",
+						""
 					]
 				},
 				"description": "Biblio"
@@ -90,29 +115,34 @@
 		{
 			"name": "delAutor",
 			"request": {
-				"method": "POST",
-				"header": [],
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/Autor/del?id=2",
+					"raw": "http://localhost:8080/autor/10",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"Autor",
-						"del"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "2"
-						},
-						{
-							"key": "nacionalidad",
-							"value": "Argentina",
-							"disabled": true
-						}
+						"autor",
+						"10"
 					]
 				}
 			},
