@@ -2,6 +2,8 @@ package ar.edu.unlp.bd.biblio.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import ar.edu.unlp.bd.biblio.error.BiblioNotFoundException;
 import ar.edu.unlp.bd.biblio.model.Autor;
 import ar.edu.unlp.bd.biblio.repositories.AutorRepository;
 
@@ -23,9 +25,13 @@ public class AutorService {
 		autorRepository.deleteById(id);
 		return "Autor eliminado";
 	}
-	
+
 	public Autor getAutor(Integer id) {
-		Autor a =  autorRepository.findById(id).get();
-		return a;
+		try {
+			Autor a = autorRepository.findById(id).get();
+			return a;
+		} catch (Exception e) {
+			throw new BiblioNotFoundException("Autor con el id " + id.toString());
+		}
 	}
 }

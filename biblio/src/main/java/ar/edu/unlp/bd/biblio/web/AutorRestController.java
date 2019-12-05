@@ -14,26 +14,27 @@ import ar.edu.unlp.bd.biblio.model.Autor;
 import ar.edu.unlp.bd.biblio.service.AutorService;
 
 @RestController
+@RequestMapping("/autor")
 public class AutorRestController {
 	@Autowired
 	private AutorService autorService;
 
-	@GetMapping(value = "/autor/{id}")
+	@GetMapping(value = "/{id}")
 	public @ResponseBody Autor getAutor(@PathVariable("id") Integer id) {
 		return autorService.getAutor(id);
 	}
 
-	@GetMapping(value = "/autor")
+	@GetMapping(value = "/")
 	public @ResponseBody Iterable<Autor> getAllAutores() {
 		return autorService.getAllAutores();
 	}
 
-	@PostMapping(path = "/autor", produces = "application/json")
+	@PostMapping(path = "/", produces = "application/json")
 	public @ResponseBody Autor addAutor(@RequestBody Autor autor) {
 		return autorService.addAutor(autor);
 	}
 
-	@DeleteMapping(path = "/autor/{id}", produces = "application/json")
+	@DeleteMapping(path = "/{id}", produces = "application/json")
 	public @ResponseBody String delAutor(@PathVariable("id") Integer id) {
 		return autorService.delAutor(id);
 	}

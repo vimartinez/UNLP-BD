@@ -11,14 +11,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/Autor?nombre=Vic&nacionalidad=Argentino",
+					"raw": "http://localhost:8080/autortest?nombre=Vic&nacionalidad=Argentino",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"Autor"
+						"autortest"
 					],
 					"query": [
 						{
@@ -94,7 +94,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombreApe\": \"ppp\",\r\n    \"nacionalidad\": \"Reinoeee\"\r\n}"
+					"raw": "{\r\n    \"nombreApe\": \"Isabel Allende\",\r\n    \"nacionalidad\": \"Chile\"\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/autor/",
