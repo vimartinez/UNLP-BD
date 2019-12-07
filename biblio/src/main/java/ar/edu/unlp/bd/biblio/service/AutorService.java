@@ -12,9 +12,9 @@ public class AutorService {
 	@Autowired
 	private AutorRepository autorRepository;
 
-	public Autor addAutor(Autor a) {
-		autorRepository.save(a);
-		return a;
+	public Autor addAutor(Autor autor) {
+		autorRepository.save(autor);
+		return autor;
 	}
 
 	public Iterable<Autor> getAllAutores() {
@@ -28,10 +28,15 @@ public class AutorService {
 
 	public Autor getAutor(Integer id) {
 		try {
-			Autor a = autorRepository.findById(id).get();
-			return a;
+			Autor autor = autorRepository.findById(id).get();
+			return autor;
 		} catch (Exception e) {
 			throw new BiblioNotFoundException("Autor con el id " + id.toString());
 		}
+	}
+
+	public Autor updEditorial(Autor autor) {
+		autorRepository.save(autor);
+		return autor;
 	}
 }
