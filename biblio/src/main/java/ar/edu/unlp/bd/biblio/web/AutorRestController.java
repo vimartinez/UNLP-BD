@@ -41,7 +41,8 @@ public class AutorRestController {
 	}
 	
 	@PutMapping(path = "/", produces = "application/json")
-	public @ResponseBody Autor setAutor(@RequestBody Autor autor) {
-		return autorService.updEditorial(autor);
+	public @ResponseBody Autor updAutor(@RequestBody Autor autor) {
+		return autorService.updAutor(autor);
 	}
+	
 }

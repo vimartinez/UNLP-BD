@@ -9,24 +9,23 @@ import javax.persistence.Id;
 public class Editorial {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
+	private Integer editorialId;
 	private String nombre;
 	private String pais;
 	
 	public Editorial() {
 		
 	}
-	public Editorial(Integer id, String nombre, String pais) {
+	public Editorial(String nombre, String pais) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.pais = pais;
 	}
 	public Integer getId() {
-		return id;
+		return editorialId;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Integer editorialId) {
+		this.editorialId = editorialId;
 	}
 	public String getNombre() {
 		return nombre;

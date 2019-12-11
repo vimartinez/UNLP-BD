@@ -6,6 +6,353 @@
 	},
 	"item": [
 		{
+			"name": "Autor",
+			"item": [
+				{
+					"name": "getAutores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/autor/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"autor",
+								""
+							]
+						},
+						"description": "Biblio"
+					},
+					"response": []
+				},
+				{
+					"name": "getAutor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/autor/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"autor",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addAutor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombreApe\": \"Isabel Allende\",\r\n    \"nacionalidad\": \"Chile\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/autor/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"autor",
+								""
+							]
+						},
+						"description": "Biblio"
+					},
+					"response": []
+				},
+				{
+					"name": "delAutor",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/autor/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"autor",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updAutor",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"id\": 13,\r\n        \"nombreApe\": \"Isabel Allende\",\r\n        \"nacionalidad\": \"Chile\",\r\n        \"eliminado\": true\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/autor/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"autor",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Editorial",
+			"item": [
+				{
+					"name": "addEditorial",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Minotauro\",\r\n    \"pais\": \"Argentina\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/editorial/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"editorial",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEditoriales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/editorial/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"editorial",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEditorial",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/editorial/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"editorial",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delEditorial",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/editorial/122",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"editorial",
+								"122"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updEditorial",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 16,\r\n    \"nombre\": \"Salamandra\",\r\n    \"pais\": \"Argentina\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/editorial/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"editorial",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Libro",
+			"item": [
+				{
+					"name": "addLibro",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"titulo\": \"El señor de los anillos\",\r\n    \"genero\": \"Fantasía\",\r\n    \"resenia\": \"Un Hobbit aventurero se propone destruir un anillo\",\r\n    \"copias\": \"5\",\r\n    \"autor\": {\"nombreApe\": \"JRR Tolkien\",\"nacionalidad\": \"Reino Unido\"},\r\n    \"editorial\": { \"nombre\": \"Ediciones B\",\"pais\": \"Argentina\"}\r\n}\r\n\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/libro/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"libro",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "TestBiblio",
 			"request": {
 				"method": "POST",
@@ -32,300 +379,6 @@
 					]
 				},
 				"description": "Prueba REST"
-			},
-			"response": []
-		},
-		{
-			"name": "getAutores",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/autor/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"autor",
-						""
-					]
-				},
-				"description": "Biblio"
-			},
-			"response": []
-		},
-		{
-			"name": "getAutor",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/autor/4",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"autor",
-						"4"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "addAutor",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"nombreApe\": \"Isabel Allende\",\r\n    \"nacionalidad\": \"Chile\"\r\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/autor/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"autor",
-						""
-					]
-				},
-				"description": "Biblio"
-			},
-			"response": []
-		},
-		{
-			"name": "delAutor",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/autor/10",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"autor",
-						"10"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "addEditorial",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Minotauro\",\r\n    \"pais\": \"Argentina\"\r\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/editorial/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"editorial",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getEditoriales",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/editorial/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"editorial",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getEditorial",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/editorial/14",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"editorial",
-						"14"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delEditorial",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/editorial/122",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"editorial",
-						"122"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "updEditorial",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"id\": 16,\r\n    \"nombre\": \"Salamandra\",\r\n    \"pais\": \"Argentina\"\r\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/editorial/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"editorial",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "updAutor",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": " {\r\n        \"id\": 13,\r\n        \"nombreApe\": \"Isabel Allende\",\r\n        \"nacionalidad\": \"Chile\",\r\n        \"eliminado\": true\r\n    }"
-				},
-				"url": {
-					"raw": "http://localhost:8080/autor/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"autor",
-						""
-					]
-				}
 			},
 			"response": []
 		}

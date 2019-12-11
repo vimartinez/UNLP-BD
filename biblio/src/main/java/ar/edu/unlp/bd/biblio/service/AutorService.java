@@ -35,8 +35,9 @@ public class AutorService {
 		}
 	}
 
-	public Autor updEditorial(Autor autor) {
+	public Autor updAutor(Autor autor) {
 		autorRepository.save(autor);
 		return autor;
 	}
+	
 }

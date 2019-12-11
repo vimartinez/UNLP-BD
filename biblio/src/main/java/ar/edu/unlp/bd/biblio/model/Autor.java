@@ -9,24 +9,24 @@ import javax.persistence.Id;
 public class Autor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
+	private Integer autorId;
 	private String nombreApe;
-	private String nacionalidad;
+	private String paisDeNacimiento;
 	private boolean eliminado;
 	
 	public Autor() {
 		
 	}
-	public Autor(String nombreApe, String nacionalidad) {
+	public Autor(String nombreApe, String paisDeNacimiento) {
 		this.nombreApe = nombreApe;
-		this.nacionalidad = nacionalidad;
+		this.paisDeNacimiento = paisDeNacimiento;
 		this.eliminado =false;
 	}
 	public Integer getId() {
-		return id;
+		return autorId;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Integer autorId) {
+		this.autorId = autorId;
 	}
 	public String getNombreApe() {
 		return nombreApe;
@@ -35,10 +35,10 @@ public class Autor {
 		this.nombreApe = nombreApe;
 	}
 	public String getNacionalidad() {
-		return nacionalidad;
+		return paisDeNacimiento;
 	}
-	public void setNacionalidad(String nacionalidad) {
-		this.nacionalidad = nacionalidad;
+	public void setNacionalidad(String paisDeNacimiento) {
+		this.paisDeNacimiento = paisDeNacimiento;
 	}
 	public boolean isEliminado() {
 		return eliminado;
