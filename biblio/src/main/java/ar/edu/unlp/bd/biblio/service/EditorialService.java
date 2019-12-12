@@ -3,7 +3,7 @@ package ar.edu.unlp.bd.biblio.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import ar.edu.unlp.bd.biblio.error.BiblioNotFoundException;
+import ar.edu.unlp.bd.biblio.error.BiblioRecordNotFoundException;
 import ar.edu.unlp.bd.biblio.model.Editorial;
 import ar.edu.unlp.bd.biblio.repositories.EditorialRepository;
 
@@ -22,7 +22,7 @@ public class EditorialService {
 			Editorial editorial = editorialRepository.findById(id).get();
 			return editorial;
 		} catch (Exception e) {
-			throw new BiblioNotFoundException("Editorial con el id " + id.toString());
+			throw new BiblioRecordNotFoundException("Editorial con el id " + id.toString());
 		}
 	}
 	

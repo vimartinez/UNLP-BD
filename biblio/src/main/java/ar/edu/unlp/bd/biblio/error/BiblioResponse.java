@@ -4,17 +4,19 @@ import java.util.Date;
 
 public class BiblioResponse {
 	private Date timestamp;
+	private String cause;
 	private String message;
 	private String error;
 	private Integer status;
 
 	
-	public BiblioResponse(String message, String error, Integer status) {
+	public BiblioResponse(String cause, String message, String error, Integer status) {
 		super();
 		this.message = message;
 		this.error = error;
 		this.status = status;
 		this.timestamp = new Date();
+		this.cause = cause;
 	}
 
 	public String getMessage() {
@@ -48,7 +50,12 @@ public class BiblioResponse {
 	public void setError(String error) {
 		this.error = error;
 	}
+	public String getCause() {
+		return cause;
+	}
 
-	
+	public void setCause(String cause) {
+		this.cause = cause;
+	}	
 
 }

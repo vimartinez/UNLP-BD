@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 public class Libro {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long libroId;
+	private Integer libroId;
 	private String titulo;
 	public String getTitulo() {
 		return titulo;
@@ -52,10 +52,10 @@ public class Libro {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-	public Long getId() {
+	public Integer getId() {
 		return libroId;
 	}
-	public void setId(Long libroId) {
+	public void setId(Integer libroId) {
 		this.libroId = libroId;
 	}
 	public String getGenero() {
