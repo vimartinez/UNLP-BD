@@ -11,21 +11,18 @@ import ar.edu.unlp.bd.biblio.repositories.EditorialRepository;
 public class EditorialService {
 	@Autowired
 	private EditorialRepository editorialRepository;
-	
+
 	public Editorial addEditorial(Editorial editorial) {
 		editorialRepository.save(editorial);
 		return editorial;
 	}
 
 	public Editorial getEditorial(Integer id) {
-		try {
-			Editorial editorial = editorialRepository.findById(id).get();
-			return editorial;
-		} catch (Exception e) {
-			throw new BiblioRecordNotFoundException("Editorial con el id " + id.toString());
-		}
+		Editorial editorial = editorialRepository.findById(id)
+				.orElseThrow(() -> new BiblioRecordNotFoundException("Editorial con el id " + id));
+		return editorial;
 	}
-	
+
 	public Iterable<Editorial> getAllEditoriales() {
 		return editorialRepository.findAll();
 	}
@@ -35,9 +32,14 @@ public class EditorialService {
 		return "Editorial eliminada";
 	}
 
-	public Editorial updEditorial(Editorial editorial) {
-		editorialRepository.save(editorial);
-		return editorial;
+	public Editorial updEditorial(Editorial editorialNueva) {
+		Editorial editorialActual = editorialRepository.findById(editorialNueva.getId())
+				.orElseThrow(() -> new BiblioRecordNotFoundException(
+						"Editorial con el id " + editorialNueva.getId() + ", no se realizó la actualización."));
+		editorialActual.setNombre(editorialNueva.getNombre());
+		editorialActual.setPais(editorialNueva.getPais());
+		editorialActual.setEliminado(editorialNueva.isEliminado());
+		return editorialRepository.save(editorialActual);
 	}
 
 }

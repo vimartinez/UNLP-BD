@@ -27,17 +27,19 @@ public class AutorService {
 	}
 
 	public Autor getAutor(Integer id) {
-		try {
-			Autor autor = autorRepository.findById(id).get();
-			return autor;
-		} catch (Exception e) {
-			throw new BiblioRecordNotFoundException("Autor con el id " + id.toString());
-		}
-	}
-
-	public Autor updAutor(Autor autor) {
-		autorRepository.save(autor);
+		Autor autor = autorRepository.findById(id)
+				.orElseThrow(() -> new BiblioRecordNotFoundException("Autor con el id " + id));
 		return autor;
 	}
-	
+
+	public Autor updAutor(Autor autorNuevo) {
+		Autor autorActual = autorRepository.findById(autorNuevo.getId())
+				.orElseThrow(() -> new BiblioRecordNotFoundException(
+						"Autor con el id " + autorNuevo.getId() + ", no se realizó la actualización."));
+		autorActual.setNombreApe(autorNuevo.getNombreApe());
+		autorActual.setNacionalidad(autorNuevo.getNacionalidad());
+		autorActual.setEliminado(autorNuevo.isEliminado());
+		return autorRepository.save(autorActual);
+	}
+
 }

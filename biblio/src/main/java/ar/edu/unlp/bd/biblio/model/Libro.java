@@ -8,19 +8,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Libro {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer libroId;
+	@NotBlank
 	private String titulo;
-	public String getTitulo() {
-		return titulo;
-	}
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
+	@NotBlank
 	private String isbn;
 	private String genero;
 	private String resenia;
@@ -94,5 +91,10 @@ public class Libro {
 	public void setEliminado(boolean eliminado) {
 		this.eliminado = eliminado;
 	}
-	
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 }

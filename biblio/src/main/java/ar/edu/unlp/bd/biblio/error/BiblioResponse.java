@@ -6,14 +6,14 @@ public class BiblioResponse {
 	private Date timestamp;
 	private String cause;
 	private String message;
-	private String error;
+	private String result;
 	private Integer status;
 
 	
-	public BiblioResponse(String cause, String message, String error, Integer status) {
+	public BiblioResponse(String cause, String message, String result, Integer status) {
 		super();
 		this.message = message;
-		this.error = error;
+		this.result = result;
 		this.status = status;
 		this.timestamp = new Date();
 		this.cause = cause;
@@ -43,12 +43,12 @@ public class BiblioResponse {
 		this.timestamp = timestamp;
 	}
 
-	public String getError() {
-		return error;
+	public String getResult() {
+		return result;
 	}
 
-	public void setError(String error) {
-		this.error = error;
+	public void setResult(String result) {
+		this.result = result;
 	}
 	public String getCause() {
 		return cause;

@@ -9,26 +9,23 @@ import ar.edu.unlp.bd.biblio.repositories.LibroRepository;
 
 @Controller
 public class LibroService {
-	
+
 	@Autowired
 	private LibroRepository libroRepository;
-	
+
 	public Libro addLibro(Libro libro) {
 		libroRepository.save(libro);
 		return libro;
 	}
-	
+
 	public Iterable<Libro> getAllLibros() {
 		return libroRepository.findAll();
 	}
 
 	public Libro getLibro(Integer id) {
-		try {
-			Libro libro = libroRepository.findById(id).get();
-			return libro;
-		} catch (Exception e) {
-			throw new BiblioRecordNotFoundException("Libro con el id " + id.toString());
-		}
+		Libro libro = libroRepository.findById(id)
+				.orElseThrow(() -> new BiblioRecordNotFoundException("Libro con el id " + id));
+		return libro;
 	}
 
 	public String delLibro(Integer id) {
@@ -36,9 +33,19 @@ public class LibroService {
 		return "Libro eliminado";
 	}
 
-	public Libro updAutor(Libro libro) {
-		libroRepository.save(libro);
-		return libro;
+	public Libro updLibro(Libro libroNuevo) {
+		Libro libroActual = libroRepository.findById(libroNuevo.getId())
+				.orElseThrow(() -> new BiblioRecordNotFoundException(
+						"Libro con el id " + libroNuevo.getId() + ", no se realizó la actualización."));
+		libroActual.setCopias(libroNuevo.getCopias());
+		libroActual.setEliminado(libroNuevo.isEliminado());
+		libroActual.setGenero(libroNuevo.getGenero());
+		libroActual.setIsbn(libroNuevo.getIsbn());
+		libroActual.setResenia(libroNuevo.getResenia());
+		libroActual.setTitulo(libroNuevo.getTitulo());
+		libroActual.setAutor(libroNuevo.getAutor());
+		libroActual.setEditorial(libroNuevo.getEditorial());
+		return libroRepository.save(libroActual);
 	}
 
 }

@@ -42,7 +42,7 @@ public class LibroRestController {
 	
 	@PutMapping(path = "/", produces = "application/json")
 	public @ResponseBody Libro updLibro(@RequestBody Libro libro) {
-		return libroService.updAutor(libro);
+		return libroService.updLibro(libro);
 	}
 
 }

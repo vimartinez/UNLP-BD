@@ -56,13 +56,13 @@
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -93,8 +93,8 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -128,18 +128,18 @@
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n        \"id\": 13,\r\n        \"nombreApe\": \"Isabel Allende\",\r\n        \"nacionalidad\": \"Chile\",\r\n        \"eliminado\": true\r\n    }"
+							"raw": " {\r\n        \"nombreApe\": \"Stephen Kinggg\",\r\n        \"eliminado\": true,\r\n        \"id\": 18,\r\n        \"nacionalidad\": \"Australia\"\r\n    }"
 						},
 						"url": {
 							"raw": "http://localhost:8080/autor/",
@@ -169,13 +169,13 @@
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -245,8 +245,8 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -280,18 +280,18 @@
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 16,\r\n    \"nombre\": \"Salamandra\",\r\n    \"pais\": \"Argentina\"\r\n}"
+							"raw": " {\r\n        \"editorialId\": 31,\r\n        \"nombre\": \"Ediciones Cc\",\r\n        \"pais\": \"Argentina\",\r\n        \"eliminado\": true,\r\n        \"id\": 31\r\n    }"
 						},
 						"url": {
 							"raw": "http://localhost:8080/editorial/",
@@ -332,7 +332,118 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"titulo\": \"El señor de los anillos\",\r\n    \"genero\": \"Fantasía\",\r\n    \"resenia\": \"Un Hobbit aventurero se propone destruir un anillo\",\r\n    \"copias\": \"5\",\r\n    \"autor\": {\"nombreApe\": \"JRR Tolkien\",\"nacionalidad\": \"Reino Unido\"},\r\n    \"editorial\": { \"nombre\": \"Ediciones B\",\"pais\": \"Argentina\"}\r\n}\r\n\r\n"
+							"raw": "{\r\n\t\"titulo\": \"El señor de los anillos\",\r\n    \"genero\": \"Fantasía\",\r\n    \"isbn\": \"9788460971726\",\r\n    \"resenia\": \"Un Hobbit aventurero se propone destruir un anillo\",\r\n    \"copias\": \"5\",\r\n    \"autor\": {\"nombreApe\": \"JRR Tolkien\",\"nacionalidad\": \"Reino Unido\"},\r\n    \"editorial\": { \"nombre\": \"Ediciones B\",\"pais\": \"Argentina\"}\r\n}\r\n\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/libro/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"libro",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLibros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/libro/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"libro",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLibro",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/libro/37",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"libro",
+								"37"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delLibro",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/libro/37",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"libro",
+								"37"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updLibro",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"titulo\": \"El señor de los anillos!!\",\r\n        \"isbn\": \"123456789012\",\r\n        \"genero\": \"Fantasía\",\r\n        \"resenia\": \"Un loco Hobbit se propone destruir un anillo\",\r\n        \"copias\": 5,\r\n        \"autor\": {\r\n            \"nombreApe\": \"JRR Tolkien\",\r\n            \"eliminado\": false,\r\n            \"id\": 53,\r\n            \"nacionalidad\": \"Reino Unidosscc\"\r\n        },\r\n        \"editorial\": {\r\n            \"editorialId\": 54,\r\n            \"nombre\": \"Ediciones Bbbc\",\r\n            \"pais\": \"Argentina\",\r\n            \"eliminado\": false,\r\n            \"id\": 54\r\n        },\r\n        \"eliminado\": true,\r\n        \"id\": 52\r\n    }\r\n\r\n"
 						},
 						"url": {
 							"raw": "http://localhost:8080/libro/",
