@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import ar.edu.unlp.bd.biblio.model.Autor;
 
 @Repository
-public interface AutorRepository extends JpaRepository<Autor, Integer>, AutorRepositoryCustom {
+public interface AutorRepository extends JpaRepository<Autor, Integer> {
 
 }
