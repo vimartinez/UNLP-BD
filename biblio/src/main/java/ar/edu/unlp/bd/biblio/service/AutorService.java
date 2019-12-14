@@ -22,7 +22,10 @@ public class AutorService {
 	}
 
 	public String delAutor(Integer id) {
-		autorRepository.deleteById(id);
+		Autor autor = autorRepository.findById(id)
+				.orElseThrow(() -> new BiblioRecordNotFoundException(
+						"Autor con el id " + id + ", no se eliminó ningún registro."));
+		autorRepository.delete(autor);
 		return "Autor eliminado";
 	}
 

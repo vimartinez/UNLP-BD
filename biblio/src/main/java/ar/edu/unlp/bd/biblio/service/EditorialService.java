@@ -28,7 +28,9 @@ public class EditorialService {
 	}
 
 	public String delEditorial(Integer id) {
-		editorialRepository.deleteById(id);
+		Editorial editorial = editorialRepository.findById(id)
+				.orElseThrow(() -> new BiblioRecordNotFoundException("Editorial con el id " + id + ", no se eliminó ningún registro"));
+		editorialRepository.delete(editorial);
 		return "Editorial eliminada";
 	}
 

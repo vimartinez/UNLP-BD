@@ -29,8 +29,11 @@ public class LibroService {
 	}
 
 	public String delLibro(Integer id) {
-		libroRepository.deleteById(id);
-		return "Libro eliminado";
+		Libro libro = libroRepository.findById(id)
+				.orElseThrow(() -> new BiblioRecordNotFoundException(
+						"Libro con el id " + id + ", eliminó ningún registro."));
+		libroRepository.delete(libro);
+		return "Libro eliminado.";
 	}
 
 	public Libro updLibro(Libro libroNuevo) {
