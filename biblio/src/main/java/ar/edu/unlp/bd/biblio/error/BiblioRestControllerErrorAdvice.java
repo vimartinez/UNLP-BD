@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+
+import java.net.BindException;
+
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @ControllerAdvice
@@ -20,6 +24,22 @@ public class BiblioRestControllerErrorAdvice extends ResponseEntityExceptionHand
 		BiblioResponse response = new BiblioResponse("Objeto no encontrado", e.getMessage(), OK.name(), OK.value());
 		return response;
     }
+	
+	@ResponseBody
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler({BindException.class})
+    public BiblioResponse handleBindException(Exception e) {
+		BiblioResponse response = new BiblioResponse("Error en la Invocación", e.getMessage(), BAD_REQUEST.name(), BAD_REQUEST.value());
+		return response;
+    }
+	
+	/*@ResponseBody
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler({TypeMismatchException.class})
+    public BiblioResponse handleTypeMismatchExceptionException(Exception e) {
+		BiblioResponse response = new BiblioResponse("Error en la Invocación2", e.getMessage(), BAD_REQUEST.name(), BAD_REQUEST.value());
+		return response;
+    }*/
 	
 	@ResponseBody
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

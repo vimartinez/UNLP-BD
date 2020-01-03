@@ -1,13 +1,13 @@
 package ar.edu.unlp.bd.biblio.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import ar.edu.unlp.bd.biblio.error.BiblioRecordNotFoundException;
 import ar.edu.unlp.bd.biblio.model.Editorial;
 import ar.edu.unlp.bd.biblio.repositories.EditorialRepository;
 
-@Controller
+@Service
 public class EditorialService {
 	@Autowired
 	private EditorialRepository editorialRepository;

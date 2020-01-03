@@ -1,13 +1,15 @@
 package ar.edu.unlp.bd.biblio.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import ar.edu.unlp.bd.biblio.error.BiblioRecordNotFoundException;
 import ar.edu.unlp.bd.biblio.model.Autor;
 import ar.edu.unlp.bd.biblio.repositories.AutorRepository;
 
-@Controller
+@Service
 public class AutorService {
 	@Autowired
 	private AutorRepository autorRepository;
@@ -18,13 +20,17 @@ public class AutorService {
 	}
 
 	public Iterable<Autor> getAllAutores() {
-		return autorRepository.findAll();
+		List<Autor> autores = null;
+		autores = autorRepository.findAll();
+		if (autores.size() == 0) {
+			throw new BiblioRecordNotFoundException("Autores en la Base de datos.");
+		}
+		return autores;
 	}
 
 	public String delAutor(Integer id) {
-		Autor autor = autorRepository.findById(id)
-				.orElseThrow(() -> new BiblioRecordNotFoundException(
-						"Autor con el id " + id + ", no se eliminó ningún registro."));
+		Autor autor = autorRepository.findById(id).orElseThrow(
+				() -> new BiblioRecordNotFoundException("Autor con el id " + id + ", no se eliminó ningún registro."));
 		autorRepository.delete(autor);
 		return "Autor eliminado";
 	}

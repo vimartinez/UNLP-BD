@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
+import ar.edu.unlp.bd.biblio.enums.EstadoLibro;
+
 @Entity
 public class Libro {
 	@Id
@@ -21,27 +23,29 @@ public class Libro {
 	private String isbn;
 	private String genero;
 	private String resenia;
-	private Integer copias;
+	private Integer copia;
 	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn(name="autorId", nullable=false)
 	private Autor autor;
 	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn(name="editorialId", nullable=false)
 	private Editorial editorial;
+	private EstadoLibro estado;
 	private boolean eliminado;
 	
 	public Libro() {
 		
 	}
-	public Libro(String titulo, String isbn, String genero, String resenia, Integer copias, Autor autor, Editorial editorial) {
+	public Libro(String titulo, String isbn, String genero, String resenia, Integer copia, Autor autor, Editorial editorial) {
 		super();
 		this.titulo = titulo;
 		this.isbn = isbn;
 		this.genero = genero;
 		this.resenia = resenia;
-		this.copias = copias;
 		this.autor = autor;
 		this.editorial = editorial;
+		this.copia = copia;
+		this.estado = EstadoLibro.GENERADO;
 	}
 	public String getIsbn() {
 		return isbn;
@@ -67,11 +71,11 @@ public class Libro {
 	public void setResenia(String resenia) {
 		this.resenia = resenia;
 	}
-	public Integer getCopias() {
-		return copias;
+	public Integer getCopia() {
+		return copia;
 	}
-	public void setCopias(Integer copias) {
-		this.copias = copias;
+	public void setCopia(Integer copia) {
+		this.copia = copia;
 	}
 	public Autor getAutor() {
 		return autor;
@@ -97,4 +101,17 @@ public class Libro {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+	public Integer getLibroId() {
+		return libroId;
+	}
+	public void setLibroId(Integer libroId) {
+		this.libroId = libroId;
+	}
+	public EstadoLibro getEstado() {
+		return estado;
+	}
+	public void setEstado(EstadoLibro estado) {
+		this.estado = estado;
+	}
+	
 }

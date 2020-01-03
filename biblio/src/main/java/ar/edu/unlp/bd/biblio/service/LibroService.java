@@ -1,13 +1,13 @@
 package ar.edu.unlp.bd.biblio.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import ar.edu.unlp.bd.biblio.error.BiblioRecordNotFoundException;
 import ar.edu.unlp.bd.biblio.model.Libro;
 import ar.edu.unlp.bd.biblio.repositories.LibroRepository;
 
-@Controller
+@Service
 public class LibroService {
 
 	@Autowired
@@ -40,7 +40,7 @@ public class LibroService {
 		Libro libroActual = libroRepository.findById(libroNuevo.getId())
 				.orElseThrow(() -> new BiblioRecordNotFoundException(
 						"Libro con el id " + libroNuevo.getId() + ", no se realizó la actualización."));
-		libroActual.setCopias(libroNuevo.getCopias());
+		libroActual.setCopia(libroNuevo.getCopia());
 		libroActual.setEliminado(libroNuevo.isEliminado());
 		libroActual.setGenero(libroNuevo.getGenero());
 		libroActual.setIsbn(libroNuevo.getIsbn());
