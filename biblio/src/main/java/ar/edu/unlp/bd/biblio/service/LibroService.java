@@ -51,4 +51,8 @@ public class LibroService {
 		return libroRepository.save(libroActual);
 	}
 
+	public void delAllLibros() {
+		libroRepository.deleteAll();
+		
+	}
 }

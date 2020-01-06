@@ -1,18 +1,27 @@
 package ar.edu.unlp.bd.biblio.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ar.edu.unlp.bd.biblio.model.Autor;
+import ar.edu.unlp.bd.biblio.service.BiblioService;
 
 @RestController
+@RequestMapping("/biblio")
 public class BiblioRestController {
+	@Autowired
+	private BiblioService biblioService;
 
-	//http://localhost:8080/Autor?nombre=Vic&nacionalidad=Argentino
-	@RequestMapping("/autortest")
-	public Autor autor(@RequestParam(value = "nombre", defaultValue = "World") String nombre,
-			@RequestParam(value = "nacionalidad", defaultValue = "Arg") String nacionalidad) {
-		return new Autor(nombre, nacionalidad);
+	@PostMapping(path = "/generarDatos", produces = "application/json")
+	public @ResponseBody String cargarDatos() {
+		 return biblioService.cargarDatos();
+	}
+	
+	@DeleteMapping(path = "/borrarDatos", produces = "application/json")
+	public @ResponseBody String delLibror() {
+		return biblioService.eliminarDatos();
 	}
 }

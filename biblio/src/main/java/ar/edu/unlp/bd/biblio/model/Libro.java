@@ -6,8 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
 import ar.edu.unlp.bd.biblio.enums.EstadoLibro;
@@ -24,11 +23,9 @@ public class Libro {
 	private String genero;
 	private String resenia;
 	private Integer copia;
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="autorId", nullable=false)
+	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
 	private Autor autor;
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="editorialId", nullable=false)
+	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
 	private Editorial editorial;
 	private EstadoLibro estado;
 	private boolean eliminado;

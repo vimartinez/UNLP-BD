@@ -3,10 +3,7 @@ package ar.edu.unlp.bd.biblio.model;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
 import ar.edu.unlp.bd.biblio.repositories.AutorRepository;
-import ar.edu.unlp.bd.biblio.service.AutorService;
 
 public class Biblio {
 	private String nombreBiblioteca;
