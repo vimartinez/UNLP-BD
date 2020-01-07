@@ -1,18 +1,43 @@
-package ar.edu.unlp.bd.biblio.service;
+package ar.edu.unlp.bd.biblio.util;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unlp.bd.biblio.error.BiblioRecordtException;
+import ar.edu.unlp.bd.biblio.model.Autor;
+import ar.edu.unlp.bd.biblio.model.Editorial;
+import ar.edu.unlp.bd.biblio.model.Libro;
+import ar.edu.unlp.bd.biblio.model.Prestamo;
+import ar.edu.unlp.bd.biblio.model.Reserva;
+import ar.edu.unlp.bd.biblio.model.Sancion;
+import ar.edu.unlp.bd.biblio.model.Socio;
+import ar.edu.unlp.bd.biblio.service.LibroService;
+import ar.edu.unlp.bd.biblio.service.PrestamoService;
+import ar.edu.unlp.bd.biblio.service.SocioService;
+
 @Service
-public class BiblioService {
+public class BiblioDataLoaderService {
 	@Autowired
 	private LibroService libroService;
+	@Autowired
+	private SocioService socioService;
+	@Autowired
+	private PrestamoService prestamoService;
 	
 
 	public String cargarDatos() {
-	/*	ArrayList<Autor> autores = new ArrayList<Autor>();
+		ArrayList<Autor> autores = new ArrayList<Autor>();
 		ArrayList<Editorial> editoriales = new ArrayList<Editorial>();
 		ArrayList<Libro> libros = new ArrayList<Libro>();
+		ArrayList<Socio> socios = new ArrayList<Socio>();
+		ArrayList<Reserva> reservas = new ArrayList<Reserva>();
+		ArrayList<Prestamo> prestamos = new ArrayList<Prestamo>();
+		ArrayList<Sancion> sanciones = new ArrayList<Sancion>();
 		
 		Autor autor = new Autor("Santiago Posteguillo", "España");
 		autores.add(autor);
@@ -33,6 +58,17 @@ public class BiblioService {
 		editoriales.add(editorial);
 		editorial = new Editorial("La Flor" , "Argentina");
 		editoriales.add(editorial);
+		
+		Socio socio = new Socio("José Perez");
+		socios.add(socio);
+		socio = new Socio("María Gomez");
+		socios.add(socio);
+		socio = new Socio("Paola Ponce");
+		socios.add(socio);
+		socio = new Socio("Manuel Moreno");
+		socios.add(socio);
+		socio = new Socio("Marcos Domine");
+		socios.add(socio);
 		
 		Libro libro = null;
 		for (int i=0; i<3;i++) {
@@ -70,28 +106,40 @@ public class BiblioService {
 		libro = new Libro("Los mitos de la historia argentina II", "9789875809235", "Historia", "Segunda entrega de la saga de historia argentina", 1, autores.get(4), editoriales.get(0));
 		libros.add(libro);
 		
+		Date fecha = new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(fecha);
+		calendar.add(Calendar.DAY_OF_YEAR, 5);
+		
+		Prestamo prestamo = new Prestamo(fecha,calendar.getTime(), socio, libro);
+		prestamos.add(prestamo);
+		
 		try {
 			for (int i=0;i<libros.size();i++) {
 				libroService.addLibro(libros.get(i));
+			}
+			for (int i=0;i<socios.size();i++) {
+				socioService.addSocio(socios.get(i));
+			}
+			for (int i=0;i<prestamos.size();i++) {
+				prestamoService.addPrestamo(prestamos.get(i));
 			}
 			return "Datos Cargados";
 		}
 		catch (Exception e) {
 			throw new BiblioRecordtException("Insertar los datos iniciales: " + e.getMessage());
-		}*/
-		return "Dummy";
+		}
 	}
 
 
 	public String eliminarDatos() {
-		/*try {
+		try {
 			libroService.delAllLibros();
+			socioService.delAllSocios();
 			return "Datos Eliminados";
 		}
 		catch (Exception e) {
 			throw new BiblioRecordtException("Eliminar los datos de la base: " + e.getMessage());
-		}*/
-		return "Dummy";
+		}
 	}
-		
 }
