@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import ar.edu.unlp.bd.biblio.enums.EstadoSocio;
 
@@ -13,7 +13,7 @@ public class Socio {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer socioId;
-	@NotBlank
+	@NotNull
 	private String nombreApe;
 	private EstadoSocio estado;
 	

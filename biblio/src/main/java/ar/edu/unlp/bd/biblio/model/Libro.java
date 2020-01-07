@@ -6,8 +6,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import ar.edu.unlp.bd.biblio.enums.EstadoLibro;
 
@@ -15,17 +15,17 @@ import ar.edu.unlp.bd.biblio.enums.EstadoLibro;
 public class Libro {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer libroId;
-	@NotBlank
+	private Integer id;
+	@NotNull
 	private String titulo;
-	@NotBlank
+	@NotNull
 	private String isbn;
 	private String genero;
 	private String resenia;
 	private Integer copia;
-	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade={CascadeType.ALL})
 	private Autor autor;
-	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade={CascadeType.ALL})
 	private Editorial editorial;
 	private EstadoLibro estado;
 	private boolean eliminado;
@@ -51,10 +51,10 @@ public class Libro {
 		this.isbn = isbn;
 	}
 	public Integer getId() {
-		return libroId;
+		return id;
 	}
 	public void setId(Integer libroId) {
-		this.libroId = libroId;
+		this.id = libroId;
 	}
 	public String getGenero() {
 		return genero;
@@ -99,10 +99,10 @@ public class Libro {
 		this.titulo = titulo;
 	}
 	public Integer getLibroId() {
-		return libroId;
+		return id;
 	}
 	public void setLibroId(Integer libroId) {
-		this.libroId = libroId;
+		this.id = libroId;
 	}
 	public EstadoLibro getEstado() {
 		return estado;

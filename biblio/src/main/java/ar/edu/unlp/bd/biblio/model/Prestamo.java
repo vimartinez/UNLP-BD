@@ -8,9 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 import ar.edu.unlp.bd.biblio.enums.EstadoPrestamo;
 
@@ -19,16 +18,14 @@ public class Prestamo {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer prestamoId;
-	@NotBlank
+	@NotNull
 	private Date fechaInicio;
-	@NotBlank
+	@NotNull
 	private Date fechaFin;
 	private EstadoPrestamo estado;
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="socioId", nullable=false)
+	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
 	private Socio socio;
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="libroId", nullable=false)
+	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
 	private Libro libro;
 	
 	public Prestamo() {

@@ -99,12 +99,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://localhost:8080/autor/10",
@@ -251,12 +246,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://localhost:8080/editorial/122",
@@ -315,41 +305,6 @@
 			"name": "Libro",
 			"item": [
 				{
-					"name": "addLibro",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t\"titulo\": \"El señor de los anillos\",\r\n    \"genero\": \"Fantasía\",\r\n    \"isbn\": \"9788460971726\",\r\n    \"resenia\": \"Un Hobbit aventurero se propone destruir un anillo\",\r\n    \"copias\": \"5\",\r\n    \"autor\": {\"nombreApe\": \"JRR Tolkien\",\"nacionalidad\": \"Reino Unido\"},\r\n    \"editorial\": { \"nombre\": \"Ediciones B\",\"pais\": \"Argentina\"}\r\n}\r\n\r\n"
-						},
-						"url": {
-							"raw": "http://localhost:8080/libro/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"libro",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "getLibros",
 					"request": {
 						"method": "GET",
@@ -403,12 +358,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": ""
 						},
 						"url": {
 							"raw": "http://localhost:8080/libro/37",
@@ -459,37 +409,82 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "addLibro",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"titulo\": \"IT\",\n\t\"genero\": \"Terror\",\n\t\"isbn\": \"9781444707861\",\n\t\"resenia\": \"Un ser hambriento acecha el pueblo de Derry\",\n\t\"copia\": \"1\",\n\t\"autor\": {\n\t\t\"nombreApe\": \"Stephen King\",\n\t\t\"nacionalidad\": \"Estados Unidos\"},\n\t\"editorial\": { \n\t\t\"nombre\": \"Ediciones B\",\n\t\t\"pais\": \"Argentina\"}\n\t}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/libro/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"libro",
+								""
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "TestBiblio",
+			"name": "generarDatos",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/autortest?nombre=Vic&nacionalidad=Argentino",
+					"raw": "http://localhost:8080/biblioDataLoader/generarDatos",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"autortest"
-					],
-					"query": [
-						{
-							"key": "nombre",
-							"value": "Vic"
-						},
-						{
-							"key": "nacionalidad",
-							"value": "Argentino"
-						}
+						"biblioDataLoader",
+						"generarDatos"
 					]
-				},
-				"description": "Prueba REST"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminarDatos",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/biblioDataLoader/borrarDatos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioDataLoader",
+						"borrarDatos"
+					]
+				}
 			},
 			"response": []
 		}

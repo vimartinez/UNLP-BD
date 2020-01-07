@@ -1,9 +1,10 @@
 package ar.edu.unlp.bd.biblio.util;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,8 @@ import ar.edu.unlp.bd.biblio.model.Sancion;
 import ar.edu.unlp.bd.biblio.model.Socio;
 import ar.edu.unlp.bd.biblio.service.LibroService;
 import ar.edu.unlp.bd.biblio.service.PrestamoService;
+import ar.edu.unlp.bd.biblio.service.ReservaService;
+import ar.edu.unlp.bd.biblio.service.SancionService;
 import ar.edu.unlp.bd.biblio.service.SocioService;
 
 @Service
@@ -28,8 +31,13 @@ public class BiblioDataLoaderService {
 	private SocioService socioService;
 	@Autowired
 	private PrestamoService prestamoService;
+	@Autowired
+	private ReservaService reservaService;
+	@Autowired
+	private SancionService sancionService;
 	
 
+	@Transactional
 	public String cargarDatos() {
 		ArrayList<Autor> autores = new ArrayList<Autor>();
 		ArrayList<Editorial> editoriales = new ArrayList<Editorial>();
@@ -38,6 +46,13 @@ public class BiblioDataLoaderService {
 		ArrayList<Reserva> reservas = new ArrayList<Reserva>();
 		ArrayList<Prestamo> prestamos = new ArrayList<Prestamo>();
 		ArrayList<Sancion> sanciones = new ArrayList<Sancion>();
+
+		Calendar calendar = Calendar.getInstance();
+		Date fecha = calendar.getTime();
+		calendar.add(Calendar.DAY_OF_YEAR, 5);
+		Date fecha2 = calendar.getTime();
+		calendar.add(Calendar.DAY_OF_YEAR, 5);
+		Date fecha3 = calendar.getTime();
 		
 		Autor autor = new Autor("Santiago Posteguillo", "España");
 		autores.add(autor);
@@ -68,6 +83,8 @@ public class BiblioDataLoaderService {
 		socio = new Socio("Manuel Moreno");
 		socios.add(socio);
 		socio = new Socio("Marcos Domine");
+		socios.add(socio);
+		socio = new Socio("Maria Aliquo");
 		socios.add(socio);
 		
 		Libro libro = null;
@@ -105,14 +122,23 @@ public class BiblioDataLoaderService {
 		libros.add(libro);
 		libro = new Libro("Los mitos de la historia argentina II", "9789875809235", "Historia", "Segunda entrega de la saga de historia argentina", 1, autores.get(4), editoriales.get(0));
 		libros.add(libro);
+		libro = new Libro("Los mitos de la historia argentina II", "9789875809235", "Historia", "Segunda entrega de la saga de historia argentina", 2, autores.get(4), editoriales.get(0));
+		libros.add(libro);
 		
-		Date fecha = new Date();
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(fecha);
-		calendar.add(Calendar.DAY_OF_YEAR, 5);
+		Reserva reserva = new Reserva(fecha,socios.get(2), libros.get(28));
+		reservas.add(reserva);
+		reserva = new Reserva(fecha2,socios.get(0), libros.get(15));
+		reservas.add(reserva);
+		reserva = new Reserva(fecha3,socios.get(2), libros.get(25));
+		reservas.add(reserva);
 		
-		Prestamo prestamo = new Prestamo(fecha,calendar.getTime(), socio, libro);
+		Prestamo prestamo = new Prestamo(fecha,fecha2, socios.get(3), libros.get(8));
 		prestamos.add(prestamo);
+		prestamo = new Prestamo(fecha,fecha3, socios.get(2), libros.get(30));
+		prestamos.add(prestamo);
+		
+		Sancion sancion = new Sancion(socios.get(4), prestamos.get(1), fecha2, fecha3);
+		sanciones.add(sancion);
 		
 		try {
 			for (int i=0;i<libros.size();i++) {
@@ -124,6 +150,12 @@ public class BiblioDataLoaderService {
 			for (int i=0;i<prestamos.size();i++) {
 				prestamoService.addPrestamo(prestamos.get(i));
 			}
+			for (int i=0;i<reservas.size();i++) {
+				reservaService.addReserva(reservas.get(i));
+			}
+			for (int i=0;i<sanciones.size();i++) {
+				sancionService.addSancion(sanciones.get(i));
+			}
 			return "Datos Cargados";
 		}
 		catch (Exception e) {
@@ -131,9 +163,12 @@ public class BiblioDataLoaderService {
 		}
 	}
 
-
+	@Transactional
 	public String eliminarDatos() {
 		try {
+			sancionService.delAllSanciones();
+			prestamoService.delAllPrestamos();
+			reservaService.delAllReservas();
 			libroService.delAllLibros();
 			socioService.delAllSocios();
 			return "Datos Eliminados";

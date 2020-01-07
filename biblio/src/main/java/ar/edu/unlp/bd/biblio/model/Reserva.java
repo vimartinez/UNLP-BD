@@ -8,28 +8,28 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import ar.edu.unlp.bd.biblio.enums.EstadoReserva;
 
 @Entity
 public class Reserva {
+	static final int DIAS_DURACION_RESERVA = 14;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer reservaId;
-	@NotBlank
+	@NotNull
 	private Date fechaGeneracion;
 	private EstadoReserva estado;
-	@NotBlank
-	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="socioId", nullable=false)
+	@NotNull
+	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
+    //@JoinColumn(name="socioId", nullable=false)
 	private Socio socio;
-	@NotBlank
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="libroId", nullable=false)
+	@NotNull
+	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
+   // @JoinColumn(name="libroId", nullable=false)
 	private Libro libro;
 	
 	public Reserva() {
@@ -74,6 +74,13 @@ public class Reserva {
 
 	public void setEstado(EstadoReserva estado) {
 		this.estado = estado;
+	}
+	
+	public boolean isReservaValida() {
+		if (this.estado == EstadoReserva.GENERADA)
+			return true;
+		else 
+			return false;
 	}
 
 }
