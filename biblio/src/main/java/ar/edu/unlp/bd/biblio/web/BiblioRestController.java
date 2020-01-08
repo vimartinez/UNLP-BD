@@ -1,9 +1,10 @@
 package ar.edu.unlp.bd.biblio.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,9 +31,34 @@ public class BiblioRestController {
 		return biblioService.getLibrosDisponibles();
 	}
 	
+	@GetMapping(value = "/getLibrosDisponiblesPorTitulo/{titulo}")
+	public @ResponseBody Iterable<Libro> getLibrosDisponiblesPorTitulo(@PathVariable("titulo") String titulo) {
+		return biblioService.getLibrosDisponiblesPorTitulo(titulo);
+	}
+	
+	@GetMapping(value = "/getLibrosDisponiblesPorAutor/{id}")
+	public @ResponseBody Iterable<Libro> getLibrosDisponiblesPorAutor(@PathVariable("id") Integer id) {
+		return biblioService.getLibrosDisponiblesPorAutor(id);
+	}
+	
+	@GetMapping(value = "/getLibrosDisponiblesPorEditorial/{id}")
+	public @ResponseBody Iterable<Libro> getLibrosDisponiblesPorEditorial(@PathVariable("id") Integer id) {
+		return biblioService.getLibrosDisponiblesPorEditorial(id);
+	}
+	
+	@GetMapping(value = "/getLibrosDisponiblesPorGenero/{genero}")
+	public @ResponseBody Iterable<Libro> getLibrosDisponiblesPorGenero(@PathVariable("genero") String genero) {
+		return biblioService.getLibrosDisponiblesPorGenero(genero);
+	}
+	
 	@GetMapping(value = "/getAllPrestamos")
 	public @ResponseBody Iterable<Prestamo> getAllPrestamos() {
 		return biblioService.getAllPrestamos();
+	}
+	
+	@PostMapping(path = "/addPrestamo", produces = "application/json")
+	public @ResponseBody Prestamo addPrestamo(@RequestBody Prestamo prestamo) {
+		return biblioService.addPrestamo(prestamo);
 	}
 	
 	@GetMapping(value = "/getAllReservas")

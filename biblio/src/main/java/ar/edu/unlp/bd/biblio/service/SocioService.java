@@ -18,6 +18,12 @@ public class SocioService {
 		return socioRepository.save(socio);
 	}
 	
+	public Socio getSocio(Integer id) {
+		Socio socio = socioRepository.findById(id)
+				.orElseThrow(() -> new BiblioRecordNotFoundException("Socio con el id " + id));
+		return socio;
+	}
+	
 	public Iterable<Socio> getAllSocios() {
 		List<Socio> socios = null;
 		socios = socioRepository.findAll();

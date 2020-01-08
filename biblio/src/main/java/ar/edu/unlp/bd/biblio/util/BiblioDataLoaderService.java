@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unlp.bd.biblio.enums.EstadoLibro;
 import ar.edu.unlp.bd.biblio.enums.EstadoSocio;
-import ar.edu.unlp.bd.biblio.error.BiblioRecordtException;
+import ar.edu.unlp.bd.biblio.error.BiblioRecordException;
 import ar.edu.unlp.bd.biblio.model.Autor;
 import ar.edu.unlp.bd.biblio.model.Editorial;
 import ar.edu.unlp.bd.biblio.model.Libro;
@@ -140,13 +140,11 @@ public class BiblioDataLoaderService {
 		reserva = new Reserva(fecha3,socios.get(2), libro);
 		reservas.add(reserva);
 		
-		libro = libros.get(8);
-		libro.setEstado(EstadoLibro.PRESTADO);
-		Prestamo prestamo = new Prestamo(fecha,fecha2, socios.get(3), libro);
+		Prestamo prestamo = new Prestamo(fecha,fecha2, socios.get(3), libros.get(8));
 		prestamos.add(prestamo);
-		libro = libros.get(30);
-		libro.setEstado(EstadoLibro.PRESTADO);
-		prestamo = new Prestamo(fecha,fecha3, socios.get(2), libro);
+		prestamo = new Prestamo(fecha,fecha3, socios.get(2), libros.get(30));
+		prestamos.add(prestamo);
+		prestamo = new Prestamo(fecha,fecha3, socios.get(1), libros.get(28));
 		prestamos.add(prestamo);
 		
 		socio = socios.get(4);
@@ -173,7 +171,7 @@ public class BiblioDataLoaderService {
 			return "Datos Cargados";
 		}
 		catch (Exception e) {
-			throw new BiblioRecordtException("Insertar los datos iniciales: " + e.getMessage());
+			throw new BiblioRecordException("Insertar los datos iniciales: " + e.getMessage());
 		}
 	}
 
@@ -188,7 +186,7 @@ public class BiblioDataLoaderService {
 			return "Datos Eliminados";
 		}
 		catch (Exception e) {
-			throw new BiblioRecordtException("Eliminar los datos de la base: " + e.getMessage());
+			throw new BiblioRecordException("Eliminar los datos de la base: " + e.getMessage());
 		}
 	}
 }

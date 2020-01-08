@@ -10,15 +10,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
 import ar.edu.unlp.bd.biblio.enums.EstadoReserva;
 
 @Entity
+@SequenceGenerator(name="RESERVA_SEQ", sequenceName="seq_reserva")
 public class Reserva {
 	static final int DIAS_DURACION_RESERVA = 14;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="RESERVA_SEQ")
 	private Integer reservaId;
 	@NotNull
 	private Date fechaGeneracion;

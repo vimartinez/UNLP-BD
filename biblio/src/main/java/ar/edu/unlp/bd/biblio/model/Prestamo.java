@@ -9,27 +9,29 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
 import ar.edu.unlp.bd.biblio.enums.EstadoPrestamo;
 
 @Entity
+@SequenceGenerator(name="PRESTAMO_SEQ", sequenceName="seq_prestamo")
 public class Prestamo {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="PRESTAMO_SEQ")
 	private Integer prestamoId;
 	@NotNull
 	private Date fechaInicio;
 	@NotNull
 	private Date fechaFin;
 	private EstadoPrestamo estado;
-	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
+	@OneToOne(fetch = FetchType.EAGER,cascade= {CascadeType.MERGE,CascadeType.PERSIST})
 	private Socio socio;
-	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
+	@OneToOne(fetch = FetchType.EAGER,cascade={CascadeType.MERGE,CascadeType.PERSIST})
 	private Libro libro;
 	
 	public Prestamo() {
-		
+		this.estado = EstadoPrestamo.GENERADO;
 	}
 
 	public Prestamo(Date fechaInicio, Date fechaFin, Socio socio, Libro libro) {

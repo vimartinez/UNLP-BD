@@ -9,22 +9,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
 import ar.edu.unlp.bd.biblio.enums.EstadoSancion;
 
 @Entity
+@SequenceGenerator(name="SANCION_SEQ", sequenceName="seq_sancion")
 public class Sancion {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SANCION_SEQ")
 	private Integer sancionId;
 	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
-//    @JoinColumn(name="socioId", nullable=false)
 	private Socio socio;
 	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
-//    @JoinColumn(name="prestamoId", nullable=false)
 	private Prestamo prestamo;
 	@NotNull
 	private Date fechaInicio;

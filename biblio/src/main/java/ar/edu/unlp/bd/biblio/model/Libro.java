@@ -7,15 +7,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
 import ar.edu.unlp.bd.biblio.enums.EstadoLibro;
 
 @Entity
+@SequenceGenerator(name="LIBRO_SEQ", sequenceName="seq_libro")
 public class Libro {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="LIBRO_SEQ")
+	private Integer libroId;
 	@NotNull
 	private String titulo;
 	@NotNull
@@ -42,7 +44,7 @@ public class Libro {
 		this.autor = autor;
 		this.editorial = editorial;
 		this.copia = copia;
-		this.estado = EstadoLibro.GENERADO;
+		this.estado = EstadoLibro.DISPONIBLE;
 	}
 	public String getIsbn() {
 		return isbn;
@@ -51,10 +53,10 @@ public class Libro {
 		this.isbn = isbn;
 	}
 	public Integer getId() {
-		return id;
+		return libroId;
 	}
 	public void setId(Integer libroId) {
-		this.id = libroId;
+		this.libroId = libroId;
 	}
 	public String getGenero() {
 		return genero;
@@ -99,10 +101,10 @@ public class Libro {
 		this.titulo = titulo;
 	}
 	public Integer getLibroId() {
-		return id;
+		return libroId;
 	}
 	public void setLibroId(Integer libroId) {
-		this.id = libroId;
+		this.libroId = libroId;
 	}
 	public EstadoLibro getEstado() {
 		return estado;

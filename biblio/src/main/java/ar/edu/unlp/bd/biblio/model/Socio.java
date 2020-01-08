@@ -18,14 +18,13 @@ public class Socio {
 	private EstadoSocio estado;
 	
 	public Socio() {
-		
-		estado = EstadoSocio.GENERADO;
+		estado = EstadoSocio.ACTIVO;
 	}
 
 	public Socio(String nombreApe) {
 		super();
 		this.nombreApe = nombreApe;
-		estado = EstadoSocio.GENERADO;
+		estado = EstadoSocio.ACTIVO;
 	}
 
 	public Integer getSocioId() {

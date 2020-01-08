@@ -449,6 +449,231 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "Biblio",
+			"item": [
+				{
+					"name": "getAllLibros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getAllLibros",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getAllLibros"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLibrosDisponibles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getLibrosDisponibles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getLibrosDisponibles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLibrosDisponiblesPorTitulo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getLibrosDisponiblesPorTitulo/africanus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getLibrosDisponiblesPorTitulo",
+								"africanus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLibrosDisponiblesPorAutor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getLibrosDisponiblesPorAutor/307",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getLibrosDisponiblesPorAutor",
+								"307"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLibrosDisponiblesPorEditorial",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getLibrosDisponiblesPorEditorial/308",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getLibrosDisponiblesPorEditorial",
+								"308"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLibrosDisponiblesPorGenero",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getLibrosDisponiblesPorGenero/Hist",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getLibrosDisponiblesPorGenero",
+								"Hist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllPrestamos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getAllPrestamos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getAllPrestamos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addPrestamo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"fechaInicio\": \"2020-01-08T14:58:55.000+0000\",\r\n        \"fechaFin\": \"2020-01-13T14:58:55.000+0000\",\r\n        \"socio\": {\r\n            \"socioId\": 2\r\n        },\r\n        \"libro\": {\r\n            \"libroId\": 26\r\n        }\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/biblio/addPrestamo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"addPrestamo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllReservas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getAllReservas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getAllReservas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllSanciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getAllSanciones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getAllSanciones"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "generarDatos",
 			"request": {
 				"method": "POST",

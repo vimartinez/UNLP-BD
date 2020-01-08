@@ -38,5 +38,25 @@ public class BiblioService {
 		return sancionService.getAllSanciones();
 	}
 
+	public Iterable<Libro> getLibrosDisponiblesPorTitulo(String titulo) {
+		return libroService.getLibrosDisponiblesPorTitulo(titulo);
+	}
+	
+	public Iterable<Libro> getLibrosDisponiblesPorAutor(Integer id) {
+		return libroService.getLibrosDisponiblesPorAutor(id);
+	}
+
+	public Iterable<Libro> getLibrosDisponiblesPorEditorial(Integer id) {
+		return libroService.getLibrosDisponiblesPorEditorial(id);
+	}
+
+	public Iterable<Libro> getLibrosDisponiblesPorGenero(String genero) {
+		return libroService.getLibrosDisponiblesPorGenero(genero);
+	}
+
+	public Prestamo addPrestamo(Prestamo prestamo) {
+		return prestamoService.addPrestamo(prestamo);
+	}
+
 		
 }

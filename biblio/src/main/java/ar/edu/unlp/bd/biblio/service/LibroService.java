@@ -1,5 +1,7 @@
 package ar.edu.unlp.bd.biblio.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +21,10 @@ public class LibroService {
 	}
 
 	public Iterable<Libro> getAllLibros() {
-		return libroRepository.findAll();
+		ArrayList<Libro> libros = (ArrayList<Libro>) libroRepository.findAll();
+		if (libros.size() == 0) throw new BiblioRecordNotFoundException("libros en la biblioteca ");
+		return libros;
+		
 	}
 
 	public Libro getLibro(Integer id) {
@@ -56,7 +61,33 @@ public class LibroService {
 		
 	}
 
-	public Iterable<Libro> getLibrosDisponibles() {
-		return libroRepository.getLibrosDisponibles();
+	public Iterable<Libro> getLibrosDisponibles() { 
+		ArrayList<Libro> libros = (ArrayList<Libro>) libroRepository.getLibrosDisponibles();
+		if (libros.size() == 0) throw new BiblioRecordNotFoundException("libros disponibles en la biblioteca ");
+		return libros;
+	}
+
+	public Iterable<Libro> getLibrosDisponiblesPorTitulo(String titulo) {
+		ArrayList<Libro> libros = (ArrayList<Libro>) libroRepository.getLibrosDisponiblesPorTitulo(titulo);
+		if (libros.size() == 0) throw new BiblioRecordNotFoundException("Libros con el título: " + titulo);
+		return libros;
+	}
+	
+	public Iterable<Libro> getLibrosDisponiblesPorAutor(Integer id) {
+		ArrayList<Libro> libros = (ArrayList<Libro>) libroRepository.getLibrosDisponiblesPorAutor(id);
+		if (libros.size() == 0) throw new BiblioRecordNotFoundException("Libros con el Autor: " + id);
+		return libros;
+	}
+
+	public Iterable<Libro> getLibrosDisponiblesPorEditorial(Integer id) {
+		ArrayList<Libro> libros = (ArrayList<Libro>) libroRepository.getLibrosDisponiblesPorEditorial(id);
+		if (libros.size() == 0) throw new BiblioRecordNotFoundException("Libros de la editorial: " + id);
+		return libros;
+	}
+
+	public Iterable<Libro> getLibrosDisponiblesPorGenero(String genero) {
+		ArrayList<Libro> libros = (ArrayList<Libro>) libroRepository.getLibrosDisponiblesGenero(genero);
+		if (libros.size() == 0) throw new BiblioRecordNotFoundException("Libros del género: " + genero);
+		return libros;
 	}
 }

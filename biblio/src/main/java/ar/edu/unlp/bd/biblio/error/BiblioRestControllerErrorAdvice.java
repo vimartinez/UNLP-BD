@@ -26,6 +26,14 @@ public class BiblioRestControllerErrorAdvice extends ResponseEntityExceptionHand
     }
 	
 	@ResponseBody
+	@ResponseStatus(HttpStatus.OK)
+    @ExceptionHandler({BiblioRecordException.class})
+    public BiblioResponse handleRecordException(BiblioRecordException e) {
+		BiblioResponse response = new BiblioResponse("No se realizó la acción", e.getMessage(), OK.name(), OK.value());
+		return response;
+    }
+	
+	@ResponseBody
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler({BindException.class})
     public BiblioResponse handleBindException(Exception e) {
