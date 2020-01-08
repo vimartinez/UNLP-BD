@@ -55,4 +55,8 @@ public class LibroService {
 		libroRepository.deleteAll();
 		
 	}
+
+	public Iterable<Libro> getLibrosDisponibles() {
+		return libroRepository.getLibrosDisponibles();
+	}
 }
