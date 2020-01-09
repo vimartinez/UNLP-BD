@@ -5,16 +5,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unlp.bd.biblio.enums.EstadoSocio;
 import ar.edu.unlp.bd.biblio.error.BiblioRecordNotFoundException;
 import ar.edu.unlp.bd.biblio.model.Sancion;
+import ar.edu.unlp.bd.biblio.model.Socio;
 import ar.edu.unlp.bd.biblio.repositories.SancionRepository;
 
 @Service
 public class SancionService {
 	@Autowired
 	private SancionRepository sancionRepository;
+	@Autowired
+	private SocioService socioService;
 	
 	public Sancion addSancion(Sancion sancion) {
+		
+		Socio socio = socioService.getSocio(sancion.getSocio().getSocioId());
+		socio.setEstado(EstadoSocio.PENALIZADO);
+		sancion.setSocio(socio);
 		return sancionRepository.save(sancion);
 	}
 	

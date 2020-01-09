@@ -5,16 +5,35 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unlp.bd.biblio.enums.EstadoLibro;
+import ar.edu.unlp.bd.biblio.enums.EstadoSocio;
+import ar.edu.unlp.bd.biblio.error.BiblioRecordException;
 import ar.edu.unlp.bd.biblio.error.BiblioRecordNotFoundException;
+import ar.edu.unlp.bd.biblio.model.Libro;
 import ar.edu.unlp.bd.biblio.model.Reserva;
+import ar.edu.unlp.bd.biblio.model.Socio;
 import ar.edu.unlp.bd.biblio.repositories.ReservaRepository;
 
 @Service
 public class ReservaService {
 	@Autowired
 	private ReservaRepository reservaRepository;
+	@Autowired
+	private LibroService libroService;
+	@Autowired
+	private SocioService socioService;
 	
 	public Reserva addReserva(Reserva reserva) {
+		Libro libro = libroService.getLibro(reserva.getLibro().getLibroId());
+		if (libro.getEstado() != EstadoLibro.DISPONIBLE) 
+			throw new BiblioRecordException("generar la reserva, el libro id: "+libro.getLibroId()+" no está disponible");
+	    libro.setEstado(EstadoLibro.RESERVADO);
+	    reserva.setLibro(libro);
+		Socio socio = socioService.getSocio(reserva.getSocio().getSocioId());
+		if (socio.getEstado() != EstadoSocio.ACTIVO) 
+			throw new BiblioRecordException("generar la reserva, el socio id: "+socio.getSocioId()+" no está activo");
+		reserva.setSocio(socio);	
+		
 		return reservaRepository.save(reserva);
 	}
 	
@@ -37,5 +56,11 @@ public class ReservaService {
 	public void delAllReservas() {
 		reservaRepository.deleteAll();
 		
+	}
+	
+	public Reserva getReserva(Integer id) {
+		Reserva reserva = reservaRepository.findById(id)
+				.orElseThrow(() -> new BiblioRecordNotFoundException("Reserva con el id " + id));
+		return reserva;
 	}
 }

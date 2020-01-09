@@ -61,6 +61,11 @@ public class BiblioRestController {
 		return biblioService.addPrestamo(prestamo);
 	}
 	
+	@PostMapping(path = "/addPrestamoReserva", produces = "application/json")
+	public @ResponseBody Prestamo addPrestamo(@RequestBody Reserva reserva) {
+		return biblioService.addPrestamo(reserva);
+	}
+	
 	@GetMapping(value = "/getAllReservas")
 	public @ResponseBody Iterable<Reserva> getAllReservas() {
 		return biblioService.getAllReservas();

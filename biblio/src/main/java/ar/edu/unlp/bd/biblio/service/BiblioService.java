@@ -31,9 +31,6 @@ public class BiblioService {
 		return reservaService.getAllReservas();
 	}
 	
-	public Iterable<Prestamo> getAllPrestamos() {
-		return prestamoService.getAllPrestamos();
-	}
 	public Iterable<Sancion> getAllSanciones() {
 		return sancionService.getAllSanciones();
 	}
@@ -53,9 +50,17 @@ public class BiblioService {
 	public Iterable<Libro> getLibrosDisponiblesPorGenero(String genero) {
 		return libroService.getLibrosDisponiblesPorGenero(genero);
 	}
-
+	
+	public Iterable<Prestamo> getAllPrestamos() {
+		return prestamoService.getAllPrestamos();
+	}
+	
 	public Prestamo addPrestamo(Prestamo prestamo) {
 		return prestamoService.addPrestamo(prestamo);
+	}
+
+	public Prestamo addPrestamo(Reserva reserva) {
+		return prestamoService.addPrestamo(reserva);
 	}
 
 		

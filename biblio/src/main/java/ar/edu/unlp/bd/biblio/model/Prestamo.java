@@ -17,6 +17,7 @@ import ar.edu.unlp.bd.biblio.enums.EstadoPrestamo;
 @Entity
 @SequenceGenerator(name="PRESTAMO_SEQ", sequenceName="seq_prestamo")
 public class Prestamo {
+	public static final int DIAS_DURACION_PRESTAMO = 14;
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="PRESTAMO_SEQ")
 	private Integer prestamoId;
@@ -25,8 +26,12 @@ public class Prestamo {
 	@NotNull
 	private Date fechaFin;
 	private EstadoPrestamo estado;
+	@OneToOne(fetch = FetchType.EAGER,cascade={CascadeType.MERGE,CascadeType.PERSIST})
+	private Reserva reserva;
+	@NotNull
 	@OneToOne(fetch = FetchType.EAGER,cascade= {CascadeType.MERGE,CascadeType.PERSIST})
 	private Socio socio;
+	@NotNull
 	@OneToOne(fetch = FetchType.EAGER,cascade={CascadeType.MERGE,CascadeType.PERSIST})
 	private Libro libro;
 	
@@ -41,6 +46,11 @@ public class Prestamo {
 		this.socio = socio;
 		this.libro = libro;
 		this.estado = EstadoPrestamo.GENERADO;
+	}
+	
+	public Prestamo(Date fechaInicio, Date fechaFin, Reserva reserva) {
+		this (fechaInicio, fechaFin, reserva.getSocio(), reserva.getLibro());
+		this.reserva = reserva;
 	}
 
 	public Integer getPrestamoId() {
@@ -90,6 +100,16 @@ public class Prestamo {
 	public void setLibro(Libro libro) {
 		this.libro = libro;
 	}
+
+	public Reserva getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
+	}
+	
+	
 	
 
 }

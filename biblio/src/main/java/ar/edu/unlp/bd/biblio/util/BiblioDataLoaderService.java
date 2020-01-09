@@ -9,8 +9,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unlp.bd.biblio.enums.EstadoLibro;
-import ar.edu.unlp.bd.biblio.enums.EstadoSocio;
 import ar.edu.unlp.bd.biblio.error.BiblioRecordException;
 import ar.edu.unlp.bd.biblio.model.Autor;
 import ar.edu.unlp.bd.biblio.model.Editorial;
@@ -127,29 +125,27 @@ public class BiblioDataLoaderService {
 		libro = new Libro("Los mitos de la historia argentina II", "9789875809235", "Historia", "Segunda entrega de la saga de historia argentina", 2, autores.get(4), editoriales.get(0));
 		libros.add(libro);
 		
-		libro = libros.get(28);
-		libro.setEstado(EstadoLibro.RESERVADO);
-		Reserva reserva = new Reserva(fecha,socios.get(2), libro);
+		Reserva reserva = new Reserva(fecha,socios.get(2), libros.get(28));
 		reservas.add(reserva);
-		libro = libros.get(15);
-		libro.setEstado(EstadoLibro.RESERVADO);
-		reserva = new Reserva(fecha2,socios.get(0), libro);
+		reserva = new Reserva(fecha2,socios.get(0), libros.get(15));
 		reservas.add(reserva);
-		libro = libros.get(25);
-		libro.setEstado(EstadoLibro.RESERVADO);
-		reserva = new Reserva(fecha3,socios.get(2), libro);
+		reserva = new Reserva(fecha3,socios.get(2), libros.get(25));
+		reservas.add(reserva);
+		reserva = new Reserva(fecha3,socios.get(2), libros.get(13));
+		reservas.add(reserva);
+		reserva = new Reserva(fecha3,socios.get(1), libros.get(5));
 		reservas.add(reserva);
 		
 		Prestamo prestamo = new Prestamo(fecha,fecha2, socios.get(3), libros.get(8));
 		prestamos.add(prestamo);
 		prestamo = new Prestamo(fecha,fecha3, socios.get(2), libros.get(30));
 		prestamos.add(prestamo);
-		prestamo = new Prestamo(fecha,fecha3, socios.get(1), libros.get(28));
+		prestamo = new Prestamo(fecha,fecha3, socios.get(1), libros.get(27));
+		prestamos.add(prestamo);
+		prestamo = new Prestamo(fecha,fecha3, reservas.get(3));
 		prestamos.add(prestamo);
 		
-		socio = socios.get(4);
-		socio.setEstado(EstadoSocio.PENALIZADO);
-		Sancion sancion = new Sancion(socio, prestamos.get(1), fecha2, fecha3);
+		Sancion sancion = new Sancion(socios.get(4), prestamos.get(1), fecha2, fecha3);
 		sanciones.add(sancion);
 		
 		try {
@@ -159,11 +155,11 @@ public class BiblioDataLoaderService {
 			for (int i=0;i<socios.size();i++) {
 				socioService.addSocio(socios.get(i));
 			}
-			for (int i=0;i<prestamos.size();i++) {
-				prestamoService.addPrestamo(prestamos.get(i));
-			}
 			for (int i=0;i<reservas.size();i++) {
 				reservaService.addReserva(reservas.get(i));
+			}
+			for (int i=0;i<prestamos.size();i++) {
+				prestamoService.addPrestamo(prestamos.get(i));
 			}
 			for (int i=0;i<sanciones.size();i++) {
 				sancionService.addSancion(sanciones.get(i));

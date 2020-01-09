@@ -8,7 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
@@ -18,20 +17,20 @@ import ar.edu.unlp.bd.biblio.enums.EstadoReserva;
 @Entity
 @SequenceGenerator(name="RESERVA_SEQ", sequenceName="seq_reserva")
 public class Reserva {
-	static final int DIAS_DURACION_RESERVA = 14;
+	public static final int DIAS_DURACION_RESERVA = 7;
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="RESERVA_SEQ")
 	private Integer reservaId;
 	@NotNull
 	private Date fechaGeneracion;
+	@NotNull
+	private Date fechaCaducidad;
 	private EstadoReserva estado;
 	@NotNull
 	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
-    //@JoinColumn(name="socioId", nullable=false)
 	private Socio socio;
 	@NotNull
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
-   // @JoinColumn(name="libroId", nullable=false)
+	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
 	private Libro libro;
 	
 	public Reserva() {
@@ -41,6 +40,7 @@ public class Reserva {
 	public Reserva(Date fechaGeneracion, Socio socio, Libro libro) {
 		super();
 		this.fechaGeneracion = fechaGeneracion;
+		this.fechaCaducidad = fechaGeneracion;
 		this.socio = socio;
 		this.libro = libro;
 		this.estado = EstadoReserva.GENERADA;
@@ -84,5 +84,24 @@ public class Reserva {
 		else 
 			return false;
 	}
+
+	public Date getFechaCaducidad() {
+		return fechaCaducidad;
+	}
+
+	public void setFechaCaducidad(Date fechaCaducidad) {
+		this.fechaCaducidad = fechaCaducidad;
+	}
+
+	public Integer getReservaId() {
+		return reservaId;
+	}
+
+	public void setReservaId(Integer reservaId) {
+		this.reservaId = reservaId;
+	}
+	
+	
+	
 
 }
