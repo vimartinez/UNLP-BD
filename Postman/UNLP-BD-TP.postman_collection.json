@@ -631,6 +631,41 @@
 					"response": []
 				},
 				{
+					"name": "addPrestamoReserva",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"reservaId\": 105\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/biblio/addPrestamoReserva",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"addPrestamoReserva"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "getAllReservas",
 					"request": {
 						"method": "GET",
@@ -645,6 +680,41 @@
 							"path": [
 								"biblio",
 								"getAllReservas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addReserva",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"reservaId\": 1,\r\n        \"fechaGeneracion\": \"2020-01-08T13:31:20.000+0000\",\r\n        \"fechaCaducidad\": \"2020-01-18T13:31:20.000+0000\",\r\n        \"socio\": {\r\n            \"socioId\": 2\r\n        },\r\n        \"libro\": {\r\n            \"libroId\": 22\r\n        }\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/biblio/addReserva",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"addReserva"
 							]
 						}
 					},

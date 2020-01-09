@@ -63,5 +63,9 @@ public class BiblioService {
 		return prestamoService.addPrestamo(reserva);
 	}
 
+	public Reserva addReserva(Reserva reserva) {
+		return reservaService.addReserva(reserva);
+	}
+
 		
 }

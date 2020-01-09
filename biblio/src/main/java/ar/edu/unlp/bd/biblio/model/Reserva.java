@@ -34,7 +34,7 @@ public class Reserva {
 	private Libro libro;
 	
 	public Reserva() {
-		
+		this.estado = EstadoReserva.GENERADA;
 	}
 
 	public Reserva(Date fechaGeneracion, Socio socio, Libro libro) {

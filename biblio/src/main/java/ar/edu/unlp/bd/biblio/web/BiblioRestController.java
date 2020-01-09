@@ -71,6 +71,11 @@ public class BiblioRestController {
 		return biblioService.getAllReservas();
 	}
 	
+	@PostMapping(path = "/addReserva", produces = "application/json")
+	public @ResponseBody Reserva addReserrva(@RequestBody Reserva reserva) {
+		return biblioService.addReserva(reserva);
+	}
+	
 	@GetMapping(value = "/getAllSanciones")
 	public @ResponseBody Iterable<Sancion> getAllSanciones() {
 		return biblioService.getAllSanciones();

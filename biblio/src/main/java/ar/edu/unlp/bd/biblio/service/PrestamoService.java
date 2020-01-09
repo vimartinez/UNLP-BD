@@ -93,5 +93,19 @@ public class PrestamoService {
 	public Prestamo getPrestamoActivoPorIdLibro(Integer id) {
 		return prestamoRepository.getPrestamoActivoPorIdLibro(id);
 	}
+	
+	public Prestamo updPrestamo(Prestamo prestamoNuevo) {
+		Prestamo prestamoActual = prestamoRepository.findById(prestamoNuevo.getPrestamoId())
+				.orElseThrow(() -> new BiblioRecordNotFoundException(
+						"Préstamo con el id " + prestamoNuevo.getPrestamoId() + ", no se realizó la actualización."));
+		prestamoActual.setEstado(prestamoNuevo.getEstado());
+		prestamoActual.setFechaFin(prestamoNuevo.getFechaFin());
+		prestamoActual.setFechaInicio(prestamoNuevo.getFechaInicio());
+		prestamoActual.setLibro(prestamoNuevo.getLibro());
+		if(prestamoNuevo.getReserva() != null) prestamoActual.setReserva(prestamoNuevo.getReserva());
+		prestamoActual.setSocio(prestamoNuevo.getSocio());
+		return prestamoRepository.save(prestamoActual);
+		
+	}
 
 }
