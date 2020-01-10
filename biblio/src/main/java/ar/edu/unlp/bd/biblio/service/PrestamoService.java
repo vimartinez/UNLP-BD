@@ -108,4 +108,22 @@ public class PrestamoService {
 		
 	}
 
+	public Iterable<Prestamo> getAllPrestamosVencidos() {
+		List<Prestamo> prestamos = null;
+		prestamos = prestamoRepository.getAllPrestamosVencidos();
+		if (prestamos.size() == 0) {
+			throw new BiblioRecordNotFoundException("Prestamos vencidos en la Base de datos.");
+		}
+		return prestamos;
+	}
+
+	public Iterable<Prestamo> getAllPrestamosPorSocio(Integer idSocio) {
+		List<Prestamo> prestamos = null;
+		prestamos = prestamoRepository.getAllPrestamosPorSocio(idSocio);
+		if (prestamos.size() == 0) {
+			throw new BiblioRecordNotFoundException("Prestamos para el socio "+idSocio+" en la Base de datos.");
+		}
+		return prestamos;
+	}
+
 }

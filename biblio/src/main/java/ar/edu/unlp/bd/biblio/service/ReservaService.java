@@ -63,4 +63,13 @@ public class ReservaService {
 				.orElseThrow(() -> new BiblioRecordNotFoundException("Reserva con el id " + id));
 		return reserva;
 	}
+
+	public Iterable<Reserva> getAllReservasValidas() {
+		List<Reserva> reservas = null;
+		reservas = reservaRepository.getAllReservasValidas();
+		if (reservas.size() == 0) {
+			throw new BiblioRecordNotFoundException("Reservas válidas en la Base de datos.");
+		}
+		return reservas;
+	}
 }

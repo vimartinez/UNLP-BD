@@ -7,6 +7,7 @@ import ar.edu.unlp.bd.biblio.model.Libro;
 import ar.edu.unlp.bd.biblio.model.Prestamo;
 import ar.edu.unlp.bd.biblio.model.Reserva;
 import ar.edu.unlp.bd.biblio.model.Sancion;
+import ar.edu.unlp.bd.biblio.model.Socio;
 
 @Service
 public class BiblioService {
@@ -18,6 +19,8 @@ public class BiblioService {
 	private PrestamoService prestamoService;
 	@Autowired
 	private SancionService sancionService;
+	@Autowired
+	private SocioService socioService;
 	
 	public Iterable<Libro> getAllLibros() {
 		return libroService.getAllLibros();
@@ -25,10 +28,6 @@ public class BiblioService {
 	
 	public Iterable<Libro> getLibrosDisponibles() {
 		return libroService.getLibrosDisponibles();
-	}
-	
-	public Iterable<Reserva> getAllReservas() {
-		return reservaService.getAllReservas();
 	}
 	
 	public Iterable<Sancion> getAllSanciones() {
@@ -66,6 +65,37 @@ public class BiblioService {
 	public Reserva addReserva(Reserva reserva) {
 		return reservaService.addReserva(reserva);
 	}
+	
+	public Iterable<Reserva> getAllReservas() {
+		return reservaService.getAllReservas();
+	}
 
-		
+	public Iterable<Reserva> getAllReservasValidas() {
+		return reservaService.getAllReservasValidas();
+	}
+
+	public Iterable<Socio> getAllSocios() {
+		return socioService.getAllSocios();
+	}
+
+	public Iterable<Socio> getAllSociosActivos() {
+		return socioService.getAllSociosActivos();
+	}
+
+	public Iterable<Socio> getAllSociosPenalizados() {
+		return socioService.getAllSociosPenalizados();
+	}
+
+	public Socio penalizarSocio(Socio socio) {
+		return socioService.penalizarSocio(socio);
+	}
+
+	public Iterable<Prestamo> getAllPrestamosVencidos() {
+		return prestamoService.getAllPrestamosVencidos();
+	}
+
+	public Iterable<Prestamo> getAllPrestamosPorSocio(Integer idSocio) {
+		return prestamoService.getAllPrestamosPorSocio(idSocio);
+	}
+
 }

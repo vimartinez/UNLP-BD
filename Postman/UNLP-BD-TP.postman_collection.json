@@ -99,7 +99,12 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8080/autor/10",
@@ -246,7 +251,12 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8080/editorial/122",
@@ -305,6 +315,41 @@
 			"name": "Libro",
 			"item": [
 				{
+					"name": "addLibro",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"titulo\": \"El señor de los anillos\",\r\n    \"genero\": \"Fantasía\",\r\n    \"isbn\": \"9788460971726\",\r\n    \"resenia\": \"Un Hobbit aventurero se propone destruir un anillo\",\r\n    \"copias\": \"5\",\r\n    \"autor\": {\"nombreApe\": \"JRR Tolkien\",\"nacionalidad\": \"Reino Unido\"},\r\n    \"editorial\": { \"nombre\": \"Ediciones B\",\"pais\": \"Argentina\"}\r\n}\r\n\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/libro/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"libro",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "getLibros",
 					"request": {
 						"method": "GET",
@@ -358,7 +403,12 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8080/libro/37",
@@ -576,26 +626,6 @@
 					"response": []
 				},
 				{
-					"name": "getAllPrestamos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/biblio/getAllPrestamos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"biblio",
-								"getAllPrestamos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "addPrestamo",
 					"request": {
 						"method": "POST",
@@ -648,7 +678,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n        \"reservaId\": 105\r\n    }"
+							"raw": " {\r\n        \"reservaId\": 2\r\n    }"
 						},
 						"url": {
 							"raw": "http://localhost:8080/biblio/addPrestamoReserva",
@@ -666,12 +696,12 @@
 					"response": []
 				},
 				{
-					"name": "getAllReservas",
+					"name": "getAllPrestamos",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/biblio/getAllReservas",
+							"raw": "http://localhost:8080/biblio/getAllPrestamos",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -679,7 +709,48 @@
 							"port": "8080",
 							"path": [
 								"biblio",
-								"getAllReservas"
+								"getAllPrestamos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllPrestamosVencidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getAllPrestamosVencidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getAllPrestamosVencidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllPrestamosPorSocio",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getAllPrestamosPorSocio/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getAllPrestamosPorSocio",
+								"1"
 							]
 						}
 					},
@@ -721,6 +792,46 @@
 					"response": []
 				},
 				{
+					"name": "getAllReservas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getAllReservas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getAllReservas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllReservasValidas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getAllReservasValidas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getAllReservasValidas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "getAllSanciones",
 					"request": {
 						"method": "GET",
@@ -735,6 +846,101 @@
 							"path": [
 								"biblio",
 								"getAllSanciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllSocios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getAllSocios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getAllSocios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllSociosActivos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getAllSociosActivos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getAllSociosActivos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PenalizarSocio",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"socioId\": 1\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/biblio/penalizarSocio",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"penalizarSocio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllSociosPenalizados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/biblio/getAllSociosPenalizados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"biblio",
+								"getAllSociosPenalizados"
 							]
 						}
 					},

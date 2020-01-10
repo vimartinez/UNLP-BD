@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unlp.bd.biblio.enums.EstadoSocio;
 import ar.edu.unlp.bd.biblio.error.BiblioRecordNotFoundException;
 import ar.edu.unlp.bd.biblio.model.Socio;
 import ar.edu.unlp.bd.biblio.repositories.SocioRepository;
@@ -43,5 +44,30 @@ public class SocioService {
 	public void delAllSocios() {
 		socioRepository.deleteAll();
 		
+	}
+
+	public Iterable<Socio> getAllSociosActivos() {
+		List<Socio> socios = null;
+		socios = socioRepository.getAllSociosActivos();
+		if (socios.size() == 0) {
+			throw new BiblioRecordNotFoundException("Socios activos en la Base de datos.");
+		}
+		return socios;
+	}
+
+	public Iterable<Socio> getAllSociosPenalizados() {
+		List<Socio> socios = null;
+		socios = socioRepository.getAllSociosPenalizados();
+		if (socios.size() == 0) {
+			throw new BiblioRecordNotFoundException("Socios penalizados en la Base de datos.");
+		}
+		return socios;
+	}
+
+	public Socio penalizarSocio(Socio socio) {
+		Socio socioActual = socioRepository.findById(socio.getSocioId()).orElseThrow(
+				() -> new BiblioRecordNotFoundException("Socio con el id " + socio.getSocioId() + ", no se pudo penalizar."));
+		socioActual.setEstado(EstadoSocio.PENALIZADO);
+		return socioRepository.save(socioActual);
 	}
 }
